@@ -1,0 +1,35 @@
+﻿@using SimchaFundLibrary;
+@model EventsVM
+@{
+    ViewData["Title"] = "History";
+}
+
+<div class="header">
+    <h1>History for @Model.Name</h1>
+    <h3>Current Balance: @Model.Events.Select(e=>e.Amount).Sum().ToString("C")</h3>
+</div>
+
+<div class="row header">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Action</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+            @foreach (Event e in Model.Events)
+            {
+                <tr>
+                <td>@e.Name</td>
+                <td style="text-align: center; vertical-align: middle;">@e.Date.ToLongDateString()</td>
+                <td style="text-align: center; vertical-align: middle;">@e.Amount.ToString("C")</td>
+            </tr>
+            }
+            
+        </table>
+    </div>
+</div>
+
+<div style="text-align:center;">
+    <a class="btn-lg btn-danger" href="/Home/Contributors">Back to Contributors</a>
+</div>
